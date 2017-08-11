@@ -1,14 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <h1>
-      Welcome to {{title}}!!
-    </h1>
-  `,
-  styles: []
+  templateUrl: './app.component.html',
+  styles: [
+    `.logo {
+      max-height: 30px;
+      padding-bottom: 5px;
+    }`
+  ]
 })
 export class AppComponent {
-  title = 'app';
+  public modalRef: BsModalRef;
+  constructor(private modalService: BsModalService) {}
+
+  public openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 }
